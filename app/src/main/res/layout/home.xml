@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.github.fgoncalves.casco.presentation.home.HomeViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff8f2">
+
+        <SeekBar
+                android:id="@+id/exercise_timer"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:layout_marginTop="40dp"
+                android:padding="10dp"
+                android:max="@{viewModel.totalTime}"
+                android:progress="@{viewModel.timeLeft}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:max="100"
+                tools:progress="50"/>
+
+        <View
+                android:id="@+id/exercise_top_left"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:elevation="8dp"
+                android:layout_margin="20dp"
+                android:background="@{viewModel.topLeftColour}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/exercise_timer"
+                tools:background="#ffc857"/>
+
+        <View
+                android:id="@+id/exercise_top_right"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:elevation="8dp"
+                android:layout_margin="20dp"
+                android:background="@{viewModel.topRightColour}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/exercise_timer"
+                tools:background="#b03535"/>
+        <View
+                android:id="@+id/exercise_bottom_left"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:elevation="8dp"
+                android:layout_margin="20dp"
+                android:background="@{viewModel.bottomLeftColour}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:background="#17651c"/>
+
+        <View
+                android:id="@+id/exercise_bottom_right"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:elevation="8dp"
+                android:layout_margin="20dp"
+                android:background="@{viewModel.bottomRightColour}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:background="#fcb6bd"/>
+
+        <TextView
+                android:id="@+id/exercise_colour"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/MainText"
+                android:padding="20dp"
+                android:text="@{viewModel.colour}"
+                app:layout_constraintTop_toBottomOf="@+id/exercise_timer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:text="Vermelho"/>
+
+        <android.support.constraint.Group
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:constraint_referenced_ids="exercise_timer,exercise_top_left,exercise_top_right,exercise_bottom_left,exercise_bottom_right,exercise_colour"/>
+
+        <ProgressBar
+                android:indeterminate="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.progressBarVisibilityChangeListener}"
+                tools:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

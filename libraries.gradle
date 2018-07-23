@@ -1,0 +1,58 @@
+class Libraries extends Expando {
+    def call(Closure cl) {
+        cl.delegate = this
+        cl.call()
+    }
+}
+
+def libraries = project.ext.libraries = new Libraries()
+
+// For projects
+libraries {
+    databinding = "androidx.databinding:databinding-compiler:$android_plugin_version"
+    kotlin_std_lib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    def supportRepositoryVersion = '1.0.0-beta01'
+    constraint_layout = 'androidx.constraintlayout:constraintlayout:1.1.0'
+    appcompat = "androidx.appcompat:appcompat:$supportRepositoryVersion"
+    cardview = "androidx.cardview:cardview:$supportRepositoryVersion"
+    recyclerview = "androidx.recyclerview:recyclerview:$supportRepositoryVersion"
+    annotations = "androidx.annotation:annotation:$supportRepositoryVersion"
+
+    def daggerVersion = '2.16'
+    dagger = "com.google.dagger:dagger:$daggerVersion"
+    dagger_compiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    dagger_android_compiler = "com.google.dagger:dagger-android-processor:$daggerVersion"
+    dagger_android = "com.google.dagger:dagger-android:$daggerVersion"
+    dagger_android_support = "com.google.dagger:dagger-android-support:$daggerVersion"
+
+    crashlytics = 'com.crashlytics.sdk.android:crashlytics:2.8.0@aar'
+
+    rx = 'io.reactivex.rxjava2:rxjava:2.1.10'
+    rxandroid = 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    rxkt = 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+
+    def lifecycleVersion = '1.1.1'
+    lifecycle_compiler = "android.arch.lifecycle:compiler:$lifecycleVersion"
+    lifecycle_viewmodel = "android.arch.lifecycle:viewmodel:$lifecycleVersion"
+    lifecycle_extensions = "android.arch.lifecycle:extensions:$lifecycleVersion"
+
+    timber = 'com.jakewharton.timber:timber:4.7.1'
+
+    navigation_fragment = "android.arch.navigation:navigation-fragment:$navigation_architecture_component_version"
+    navigation_ui = "android.arch.navigation:navigation-ui:$navigation_architecture_component_version"
+
+    firebase_core = 'com.google.firebase:firebase-core:16.0.1'
+    firebase_realtime_db = 'com.google.firebase:firebase-database:16.0.1'
+
+    picasso = 'com.squareup.picasso:picasso:2.71828'
+
+    material = 'com.google.android.material:material:1.0.0-alpha1'
+
+    // For testing
+    junit = 'junit:junit:4.12'
+    mockito = 'org.mockito:mockito-core:2.9.0'
+    mockito_kotlin = 'com.nhaarman:mockito-kotlin:1.5.0'
+    assertj = 'com.squareup.assertj:assertj-android:1.2.0'
+    test_rules = "com.github.fgoncalves.android-utils:testrules:$utilsVersion"
+}
